@@ -35,6 +35,11 @@ class Game
         });
     }
 
+    handleCardClick(card) {
+        console.log(card);
+    }
+
+
     /**
      * Permet de mélanger les cartes
      * @param {*} array 

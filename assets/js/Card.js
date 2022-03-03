@@ -27,7 +27,9 @@ class Card {
      * Gère l'event de clock sur la carte
      */
     handleClick() {
-        console.log(this.element);
+        // On veut pouvoir retourner la carte au click (lui ajouter une class)
+        this.element.classList.add('card--revealed');
+        this.game.handleCardClick(this);
     }
 
 }

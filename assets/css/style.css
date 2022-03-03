@@ -1,52 +1,65 @@
 .card {
     display: inline-block;
     border: solid 1px #000;
-    height: 50px;
-    width: 50px;
-    background-color: #f0f8;
-  
-    color: transparent;
+    height: 100px;
+    width: 100px;
+    background-image: url('../images/oclock.jpg');
+    background-size: contain;
 }
 
-.card--0 {
-
+.card--revealed.card--0 {
+    background: url('../images/cards.png');
+    background-position: 0px 0px;
 }
-.card--1 {
-    
+.card--revealed.card--1 {
+    background: url('../images/cards.png');
+    background-position: 0px 100px;
 }
-.card--2 {
-    
+.card--revealed.card--2 {
+    background: url('../images/cards.png');
+    background-position: 0px 200px;
 }
-.card--3 {
-    
+.card--revealed.card--3 {
+    background: url('../images/cards.png');
+    background-position: 0px 300px;
 }
-.card--4 {
-    
+.card--revealed.card--4 {
+    background: url('../images/cards.png');
+    background-position: 0px 400px;
 }
-.card--5 {
-    
+.card--revealed.card--5 {
+    background: url('../images/cards.png');
+    background-position: 0px 500px;
 }
-.card--6 {
-    
+.card--revealed.card--6 {
+    background: url('../images/cards.png');
+    background-position: 0px 600px;
 }
-.card--7 {
-    
+.card--revealed.card--7 {
+    background: url('../images/cards.png');
+    background-position: 0px 700px;
 }
-.card--8 {
-    
+.card--revealed.card--8 {
+    background: url('../images/cards.png');
+    background-position: 0px 800px;
 }
-.card--9 {
-    
+.card--revealed.card--9 {
+    background: url('../images/cards.png');
+    background-position: 0px 900px;
 }
-.card--10 {
-    
+.card--revealed.card--10 {
+    background: url('../images/cards.png');
+    background-position: 0px 1000px;
 }
-.card--11 {
-    
+.card--revealed.card--11 {
+    background: url('../images/cards.png');
+    background-position: 0px 1100px;
 }
-.card--12 {
-    
+.card--revealed.card--12 {
+    background: url('../images/cards.png');
+    background-position: 0px 1200px;
 }
-.card--13 {
-    
+.card--revealed.card--13 {
+    background: url('../images/cards.png');
+    background-position: 0px 1300px;
 }
