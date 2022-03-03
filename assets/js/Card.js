@@ -24,6 +24,13 @@ class Card {
     }
 
     /**
+     * Donne la valeur de la carte
+     */
+    getValue() {
+        return this.value;
+    }
+
+    /**
      * Gère l'event de clock sur la carte
      */
     handleClick() {
