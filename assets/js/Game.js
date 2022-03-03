@@ -10,6 +10,8 @@ class Game
     revealedCards = [];
     foundPair = [];
 
+    clickCounter = 0;
+
     constructor(selector)
     {
         // On récupère l'élément correspondant au jeu
@@ -41,6 +43,8 @@ class Game
     handleCardClick(card) {
         // On contabilise les cartes retourné en les stockant dans un tableau
         this.revealedCards.push(card);
+        // On incrémente le compteur de click
+        this.clickCounter++;
 
         // Si deux cartes sont retournées
         if (this.revealedCards.length === 2) {
