@@ -6,6 +6,8 @@ class Countdown
 
     gameElement = null;
     countdownElement = null;
+    progressBarElement = null;
+    progressBarWidth = 750;
 
     game = null;
 
@@ -15,16 +17,27 @@ class Countdown
     }
 
     render() {
-        // On créé l'élément pour le timer
+        // On ajoute l'élément pour le timer
         let countdownElement = document.createElement('div');
-        // On lui ajoute une class
         countdownElement.classList.add('countdown');
-        // On lui ajoute sa valeur dans un dataset
         countdownElement.dataset.value = this.startValue;
-        // On l'ajoute au propriété de la class
+        countdownElement.style.width = this.progressBarWidth + 'px';
+        countdownElement.style.maxWidth = this.progressBarWidth + 'px';
         this.countdownElement = countdownElement;
-        // On l'ajoute dans le DOM
+
+        // On ajoute la barre de progression
+        let progressBarElement = document.createElement('div');
+        progressBarElement.classList.add('progress');
+        progressBarElement.style.width = this.progressBarWidth + 'px';
+        progressBarElement.style.maxWidth = this.progressBarWidth + 'px';
+        this.progressBarElement = progressBarElement;
+
+        // On l'ajoute le countdownElement dans la div du jeu
         this.gameElement.appendChild(this.countdownElement);
+
+        // On ajoute le progressBarElement dans la div du countdown
+        this.countdownElement.appendChild(this.progressBarElement);
+
         // On initialise la currentValue
         this.currentValue = this.startValue;
         // On lance le compte à rebours
@@ -32,7 +45,7 @@ class Countdown
     }
 
     start() {
-        if(this.currentValue > 0) {
+        if(this.currentValue >= 0) {
             setTimeout(() => {
                 if (this.currentValue === this.startValue) {
                     this.currentValue = this.startValue-1;
@@ -42,10 +55,17 @@ class Countdown
                     this.countdownElement.dataset.value = this.currentValue;
                 }
                 this.start();
+                this.updateProgressBar();
             }, 1000);
         } else {
             this.game.isLost();
         }
+    }
+
+    updateProgressBar() {
+        // On prend la taille total et on lui enlève l'équivalent de la taille max / par le nombre de secondes restant
+        let progressBarSizePortion = this.progressBarWidth/this.startValue;
+        this.progressBarElement.style.width = (progressBarSizePortion * this.currentValue) +'px';
     }
 
     getCurrentTime() {
