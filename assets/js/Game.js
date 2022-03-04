@@ -1,7 +1,7 @@
 class Game
 {
 
-    pairNumber = 14;
+    pairNumber = 2;
     containerElement = null;
 
     matrix = [];
@@ -12,6 +12,8 @@ class Game
     foundPair = [];
 
     clickCounter = 0;
+
+    won = false;
 
     constructor(selector)
     {
@@ -89,15 +91,26 @@ class Game
 
     isWin() {
         if (this.foundPair.length === this.pairNumber) {
-            alert('C\'est gagné !');
-            // TODO On arrete le compte à rebours
+            this.win();
         }
-
-        // TODO On gère l'envoi du score au back
     }
 
-    isLost() {
+    over() {
+        this.countdown.stop();
         alert('C\'est perdu !');
+    }
+
+    win() {
+        this.won = true;
+        let timeleft = this.countdown.getCurrentTime();
+        let winTime = this.countdown.startValue - timeleft;
+        this.countdown.stop();
+        alert('C\'est gagné en ' + winTime + ' secondes !');
+    }
+
+    sendResult() 
+    {
+        // TODO On gère l'envoi du score au back
     }
 
     /**

@@ -3,6 +3,7 @@ class Countdown
 
     startValue = 2*60;
     currentValue = null;
+    stopped = false;
 
     gameElement = null;
     countdownElement = null;
@@ -45,7 +46,7 @@ class Countdown
     }
 
     start() {
-        if(this.currentValue >= 0) {
+        if(this.currentValue >= 0 && this.stopped != true) {
             setTimeout(() => {
                 if (this.currentValue === this.startValue) {
                     this.currentValue = this.startValue-1;
@@ -57,14 +58,19 @@ class Countdown
                 this.start();
                 this.updateProgressBar();
             }, 1000);
-        } else {
-            this.game.isLost();
+        } else if (this.game.won == false) {
+            this.game.over();
         }
+    }
+
+    stop() {
+        this.stopped = true;
     }
 
     updateProgressBar() {
         // On prend la taille total et on lui enlève l'équivalent de la taille max / par le nombre de secondes restant
         let progressBarSizePortion = this.progressBarWidth/this.startValue;
+        // On met à jour la taille de la progressBar
         this.progressBarElement.style.width = (progressBarSizePortion * this.currentValue) +'px';
     }
 
