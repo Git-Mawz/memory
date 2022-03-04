@@ -6,6 +6,7 @@ class Game
 
     matrix = [];
     cards = [];
+    countdown = null;
 
     revealedCards = [];
     foundPair = [];
@@ -28,6 +29,9 @@ class Game
         this.matrix.forEach(value => {
             this.cards.push(new Card(this, value));
         });
+
+        this.countdown = new Countdown(this.containerElement);
+        this.countdown.render();
     }
 
     /**
@@ -97,8 +101,11 @@ class Game
     wrongSelection() {
         // On enlève la class card--releaved aux deux cartes
         this.revealedCards.forEach(card => {
-            // On chache la carte
-            card.hide();
+            // Si la carte n'est pas déjà dans une pair trouvé
+            if (!this.foundPair.includes(card.getValue())) {
+                // On cache la carte
+                card.hide();
+            }
         })
         // On vide le tableau revealedCards
         this.revealedCards = []
