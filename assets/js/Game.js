@@ -30,7 +30,7 @@ class Game
             this.cards.push(new Card(this, value));
         });
 
-        this.countdown = new Countdown(this.containerElement);
+        this.countdown = new Countdown(this, this.containerElement);
         this.countdown.render();
     }
 
@@ -90,9 +90,14 @@ class Game
     isWin() {
         if (this.foundPair.length === this.pairNumber) {
             alert('C\'est gagné !');
+            // TODO On arrete le compte à rebours
         }
 
         // TODO On gère l'envoi du score au back
+    }
+
+    isLost() {
+        alert('C\'est perdu !');
     }
 
     /**
