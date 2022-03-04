@@ -39,4 +39,10 @@ class Card {
         this.game.handleCardClick(this);
     }
 
+    hide() {
+        setTimeout(() => {
+            this.element.classList.remove('card--revealed');
+        }, 1000);
+    }
+
 }

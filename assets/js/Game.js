@@ -70,8 +70,13 @@ class Game
      * Si les cartes ont la même value
      */
     rightSelection() {
-        // On transmet la value des bonnes cartes retournée a une prop foundPair
-        this.foundPair.push(this.revealedCards[0].getValue());
+        // On récupère la valeur de la pair
+        let pairValue = this.revealedCards[0].getValue();
+        // Si la pair n'est pas déjà trouvé
+        if (!this.foundPair.includes(pairValue)) {
+            // On transmet la value des bonnes cartes retournée a une prop foundPair
+            this.foundPair.push(pairValue);
+        }
         // On vide la tableau revealedCards
         this.revealedCards = [];
         //On vérifie si la partie est gagné.
@@ -82,6 +87,7 @@ class Game
         if (this.foundPair.length === this.pairNumber) {
             alert('C\'est gagné !');
         }
+
         // TODO On gère l'envoi du score au back
     }
 
@@ -89,9 +95,10 @@ class Game
      * Si les cartes ont une value différente
      */
     wrongSelection() {
-        // TODO On enlève la class card--releaved aux deux cartes
+        // On enlève la class card--releaved aux deux cartes
         this.revealedCards.forEach(card => {
-            // TODO Methode à ajouter à la class Card pour la cacher (supprimer la class card--revealed)
+            // On chache la carte
+            card.hide();
         })
         // On vide le tableau revealedCards
         this.revealedCards = []

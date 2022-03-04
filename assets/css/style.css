@@ -5,6 +5,8 @@
     width: 100px;
     background-image: url('../images/oclock.jpg');
     background-size: contain;
+    margin: 1px;
+    margin-bottom: 1px;
 }
 
 .card--revealed.card--0 {
@@ -62,4 +64,14 @@
 .card--revealed.card--13 {
     background: url('../images/cards.png');
     background-position: 0px -1300px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#memory {
+    width : 730px;
+    min-width: 730px;
+    margin: auto;
 }
