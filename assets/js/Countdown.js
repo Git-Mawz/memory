@@ -9,6 +9,7 @@ class Countdown
     countdownElement = null;
     progressBarElement = null;
     progressBarWidth = 750;
+    unit = 'px';
 
     game = null;
 
@@ -22,15 +23,15 @@ class Countdown
         let countdownElement = document.createElement('div');
         countdownElement.classList.add('countdown');
         countdownElement.dataset.value = this.startValue;
-        countdownElement.style.width = this.progressBarWidth + 'px';
-        countdownElement.style.maxWidth = this.progressBarWidth + 'px';
+        countdownElement.style.width = this.progressBarWidth + this.unit;
+        countdownElement.style.maxWidth = this.progressBarWidth + this.unit;
         this.countdownElement = countdownElement;
 
         // On ajoute la barre de progression
         let progressBarElement = document.createElement('div');
         progressBarElement.classList.add('progress');
-        progressBarElement.style.width = this.progressBarWidth + 'px';
-        progressBarElement.style.maxWidth = this.progressBarWidth + 'px';
+        progressBarElement.style.width = this.progressBarWidth + this.unit;
+        progressBarElement.style.maxWidth = this.progressBarWidth + this.unit;
         this.progressBarElement = progressBarElement;
 
         // On l'ajoute le countdownElement dans la div du jeu
@@ -71,7 +72,7 @@ class Countdown
         // On prend la taille total et on lui enlève l'équivalent de la taille max / par le nombre de secondes restant
         let progressBarSizePortion = this.progressBarWidth/this.startValue;
         // On met à jour la taille de la progressBar
-        this.progressBarElement.style.width = (progressBarSizePortion * this.currentValue) +'px';
+        this.progressBarElement.style.width = (progressBarSizePortion * this.currentValue) + this.unit;
     }
 
     getCurrentTime() {

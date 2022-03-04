@@ -1,18 +1,15 @@
 class Game
 {
-
+    // Config (On peut passer la valeur de cette propriété via le construct)
     pairNumber = 2;
+    // Props de départ
     containerElement = null;
-
     matrix = [];
     cards = [];
     countdown = null;
-
     revealedCards = [];
     foundPair = [];
-
     clickCounter = 0;
-
     won = false;
 
     constructor(selector)
