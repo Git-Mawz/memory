@@ -1,7 +1,7 @@
 class Game
 {
     // Config (On peut passer la valeur de cette propriété via le construct)
-    pairNumber = 2;
+    pairNumber = 14;
     // Props de départ
     containerElement = null;
     matrix = [];
