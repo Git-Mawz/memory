@@ -13,6 +13,12 @@ class MainController extends DisplayController
         
     }
 
+    /**
+     * Appel l'affichage de la page principale du site
+     *
+     * @param array $data les données à transmettre à la vue
+     * @return void
+     */
     public function mainPage($data)
     {
         $this->display('main', $data);
