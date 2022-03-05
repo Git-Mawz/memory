@@ -24,7 +24,6 @@ $action = filter_input(INPUT_GET, 'action');
 $scoreValue = filter_input(INPUT_POST, 'time');
 
 
-
 // En fonction de la valeur qu'on récupère on décide de la méthode du controller à appeler
 if ($action == 'browse') {
     // On récupère les scores enregistrés
