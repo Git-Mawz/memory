@@ -12,23 +12,26 @@ error_reporting(E_ALL);
 
 // On récupère les valeurs relatives à la base de données dans le fichier de config
 require_once 'config.php';
-// On se sert des valeurs récupérés pour créé notre objet Database
+// On se sert des valeurs récupérés pour instancier notre objet Database une seule fois
 $database = new Database('mysql:dbname=' . $dbname .';host=127.0.0.1', $dbUser, $dbPassword);
+
+// On instancie notre controller et on lui transmet l'objet database
+$apiController = new ApiController($database);
 
 // On récupère la valeur de la super globale GET (appelé depuis le front)
 $action = filter_input(INPUT_GET, 'action');
+// On récupère la valeur de l'input POST "time"
+$scoreValue = filter_input(INPUT_POST, 'time');
 
-// On instancie notre controller
-$apiController = new ApiController();
 
-// On se sert de la valeur pour décider sur quelle méthode du controller on part
+
+// En fonction de la valeur qu'on récupère on décide de la méthode du controller à appeler
 if ($action == 'browse') {
-    // TODO On envoi les 10 derniers meilleurs scores via l'ApiController
-    $apiController->getScores($database);
-
-} else if ($action == 'add') {
-    // TODO On ajoute le score à dans la BDD via l'ApiController
-
+    // On récupère les scores enregistrés
+    $apiController->getScores();
+} else if ($scoreValue) {
+    // On inscrit un nouevau score en BDD
+    $apiController->addScore($scoreValue);
 } else {
     // Si on est sur l'url classique du memory, on l'affiche
     include __DIR__ . '/' . 'public/memory.html';

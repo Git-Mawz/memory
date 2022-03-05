@@ -4,25 +4,34 @@ namespace App\Controller;
 
 class ApiController
 {
+
+    private $database;
+
+    public function __construct($database)
+    {
+        $this->database = $database;
+    }
+
     /**
      * Methode pour enregistrer les scores
      *
-     * @return void
+     * @return json
      */
-    public function getScores($database)
+    public function getScores()
     {
-        $rawData = $database->findAll();
+        $rawData = $this->database->findAll();
         echo json_encode($rawData);
     }
 
     /**
-     * Méthode pour envoyer les scores
+     * Méthode pour enregister un score en base de donnée
      *
-     * @return void
+     * @return json
      */
-    public function insertScore()
+    public function addScore($time)
     {
-
+        $result = $this->database->insertScore($time);
+        echo json_encode(['result' => $result]);
     }
 
 }
