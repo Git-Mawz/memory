@@ -1,24 +1,35 @@
 <?php
+
 require __DIR__ . '/vendor/autoload.php';
+
+use App\Utils\Database;
+use App\Controller\ApiController;
 
 // On affiche les erreurs
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-use App\Controller\MainController;
+// On récupère les valeurs relatives à la base de données dans le fichier de config
+require_once 'config.php';
+// On se sert des valeurs récupérés pour créé notre objet Database
+$database = new Database('mysql:dbname=' . $dbname .';host=127.0.0.1', $dbUser, $dbPassword);
 
-// CONFIG
-$appDirectory = 'memory_game';
-// CONFIG
+// On récupère la valeur de la super globale GET (appelé depuis le front)
+$action = filter_input(INPUT_GET, 'action');
 
-// On récupère l'url de base pour l'affichage des assets
-$baseURI = "http://" . $_SERVER['SERVER_NAME'] . '/' . $appDirectory;
-// On la passe dans un tableau qui sera transmis au controller
-$data = [
-    'baseURI' => $baseURI
-];
+// On instancie notre controller
+$apiController = new ApiController();
 
-$controller = new MainController();
+// On se sert de la valeur pour décider sur quelle méthode du controller on part
+if ($action == 'browse') {
+    // TODO On envoi les 10 derniers meilleurs scores via l'ApiController
+    $apiController->getScores($database);
 
-$controller->mainPage($data);
+} else if ($action == 'add') {
+    // TODO On ajoute le score à dans la BDD via l'ApiController
+
+} else {
+    // Si on est sur l'url classique du memory, on l'affiche
+    include __DIR__ . '/' . 'public/memory.html';
+}

@@ -1,0 +1,7 @@
+<?php
+
+// Enlever le .toggle du nom du fichier et indiquer les paramètres de la base de données
+
+$dbname = 'name';
+$dbUser = 'user';
+$dbPassword = 'password';
