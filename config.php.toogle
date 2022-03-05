@@ -2,6 +2,6 @@
 
 // Enlever le .toggle du nom du fichier et indiquer les paramètres de la base de données
 
-$dbname = 'name';
+$dbName = 'name';
 $dbUser = 'user';
 $dbPassword = 'password';

@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+/**
+ * l'ApiController fait l'affichage et la reception des données
+ */
 class ApiController
 {
 
@@ -14,8 +17,6 @@ class ApiController
 
     /**
      * Methode pour enregistrer les scores
-     *
-     * @return json
      */
     public function getScores()
     {
@@ -25,8 +26,6 @@ class ApiController
 
     /**
      * Méthode pour enregister un score en base de donnée
-     *
-     * @return json
      */
     public function addScore($time)
     {
