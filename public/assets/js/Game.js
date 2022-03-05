@@ -1,7 +1,7 @@
 class Game
 {
     // Config (On peut passer la valeur de cette propriété via le construct)
-    pairNumber = 14;
+    pairNumber = 2;
     // Props de départ
     containerElement = null;
     matrix = [];
@@ -41,6 +41,9 @@ class Game
             const cardElement = card.getElement();
             this.containerElement.appendChild(cardElement);
         });
+
+        // TODO Afficher les meilleurs scores
+
     }
 
     handleCardClick(card) {
@@ -102,12 +105,12 @@ class Game
         let timeleft = this.countdown.getCurrentTime();
         let winTime = this.countdown.startValue - timeleft;
         this.countdown.stop();
-        alert('C\'est gagné en ' + winTime + ' secondes !');
-    }
 
-    sendResult() 
-    {
-        // TODO On gère l'envoi du score au back
+        alert('C\'est gagné en ' + winTime + ' secondes !');
+
+        // TODO Enregistrer le score
+        // let scoreRepo = new ScoreRepository();
+        // scoreRepo.sendScore(winTime);
     }
 
     /**
