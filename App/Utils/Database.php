@@ -16,7 +16,11 @@ class Database extends \PDO
      */
     public function findAll()
     {   
-        $query ='SELECT * from `scores`';
+        $query ='
+            SELECT * from `scores`
+            ORDER BY `elapsed_time`
+            LIMIT 10
+        ';
         $statement = $this->query($query);
         return $statement->fetchAll(self::FETCH_ASSOC);
     }
@@ -33,11 +37,7 @@ class Database extends \PDO
         $statement = $this->prepare('INSERT INTO `scores` (elapsed_time) VALUES (:time)');
         $result = $statement->execute(['time' => $time]);
 
-        if ($result) {
-            return 'Score ajouté';
-        } else {
-            return 'Une erreur s\'est produite';
-        }
+        return $result;
 
     }
 }

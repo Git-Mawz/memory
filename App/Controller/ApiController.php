@@ -30,7 +30,10 @@ class ApiController
     public function addScore($time)
     {
         $result = $this->database->insertScore($time);
-        echo json_encode(['result' => $result]);
+        if($result) {
+            header('HTTP/1.1 201 Created');
+            echo json_encode(['result' => $result]);
+        }
     }
 
 }

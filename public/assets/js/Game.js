@@ -1,19 +1,23 @@
 class Game
 {
     // Config (On peut passer la valeur de cette propriété via le construct)
-    pairNumber = 2;
+    pairNumber = null;
     // Props de départ
     containerElement = null;
     matrix = [];
     cards = [];
-    countdown = null;
+    
     revealedCards = [];
     foundPair = [];
     clickCounter = 0;
     won = false;
 
-    constructor(selector)
+    countdown = null;
+    scoreRepo = null;
+
+    constructor(selector, pairNumber)
     {
+        this.pairNumber = pairNumber;
         // On récupère l'élément correspondant au jeu
         this.containerElement = document.getElementById(selector);
         // On créé un tableau avec les pair de chiffres
@@ -30,20 +34,33 @@ class Game
         });
 
         this.countdown = new Countdown(this, this.containerElement);
-        this.countdown.render();
+        this.scoreRepo = new ScoreRepository();
     }
 
     /**
-     * Permet d'afficher les cartes
+     * Permet l'affichage du jeu
      */
     render() {
+        // On affiche les cartes
         this.cards.forEach(card => {
             const cardElement = card.getElement();
             this.containerElement.appendChild(cardElement);
         });
 
-        // TODO Afficher les meilleurs scores
+        // On affiche les meilleurs scores
+        this.scoreRepo.getScores()
+        .then(scoreArray => {
+            if (scoreArray.length > 1) {
+                alert('Les ' + scoreArray.length + ' meilleurs temps : ' + scoreArray + ' secondes');
+            } else if (scoreArray.length == 1) {
+                alert('Le meilleur temps : ' + scoreArray + ' secondes');
+            } else {
+                alert('Pas encore de score enregistrés !');
+            }
+        })
 
+        // On affiche et on lance le compte à rebours
+        this.countdown.render();
     }
 
     handleCardClick(card) {
@@ -108,9 +125,8 @@ class Game
 
         alert('C\'est gagné en ' + winTime + ' secondes !');
 
-        // TODO Enregistrer le score
-        let scoreRepo = new ScoreRepository();
-        scoreRepo.sendScore(winTime);
+        // On Enregistrer le score
+        this.scoreRepo.sendScore(winTime);
     }
 
     /**
