@@ -109,8 +109,8 @@ class Game
         alert('C\'est gagné en ' + winTime + ' secondes !');
 
         // TODO Enregistrer le score
-        // let scoreRepo = new ScoreRepository();
-        // scoreRepo.sendScore(winTime);
+        let scoreRepo = new ScoreRepository();
+        scoreRepo.sendScore(winTime);
     }
 
     /**

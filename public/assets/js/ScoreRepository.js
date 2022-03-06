@@ -20,12 +20,8 @@ class ScoreRepository
         
         return fetch(this.sendScoreEndpoint, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          },
           cache: 'no-cache',
           body: formData
         });
-      
     }
 }
