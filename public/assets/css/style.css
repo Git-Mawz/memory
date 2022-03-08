@@ -82,4 +82,5 @@ h1 {
     min-height: 20px;
     border-radius: 10px;
     background-color: red;
+    transition-duration: 1s;
 }
