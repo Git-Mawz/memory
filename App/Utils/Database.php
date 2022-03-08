@@ -5,12 +5,12 @@ namespace App\Utils;
 /**
  * Class de liaison avec la BDD.
  * Elle étend la class PDO ce qui nous permet d'accéder à ses méthodes.
- * Ne pas oublier que le consctuct de la class étendu est présent, il faut transmettre à la class Database les argument attendu par PDO
+ * Ne pas oublier que le consctuct de la class étendu est présent, il faut transmettre à la class Database les argument attendu par la class PDO
  */
 class Database extends \PDO
 {
     /**
-     * Récupère tout les scores au jeu
+     * Récupère les 10 meilleurs scores en BDD
      *
      * @return array
      */
@@ -26,10 +26,10 @@ class Database extends \PDO
     }
 
     /**
-     * Ajoute un score en base de données
+     * Ajoute un score en BDD
      *
      * @param int $time
-     * @return string 
+     * @return boolean
      */
     public function insertScore($time)
     {

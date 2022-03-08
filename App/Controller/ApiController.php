@@ -3,11 +3,11 @@
 namespace App\Controller;
 
 /**
- * l'ApiController fait l'affichage et la reception des données
+ * l'ApiController fait l'envoi et la reception des données
  */
 class ApiController
 {
-
+    // Notre objet database
     private $database;
 
     public function __construct($database)
@@ -16,12 +16,12 @@ class ApiController
     }
 
     /**
-     * Methode pour enregistrer les scores
+     * Methode pour récupérer les scores en BDD
      */
     public function getScores()
     {
-        $rawData = $this->database->findAll();
-        echo json_encode($rawData);
+        $data = $this->database->findAll();
+        echo json_encode($data);
     }
 
     /**

@@ -4,31 +4,28 @@ class ScoreRepository
     sendScoreEndpoint = 'http://localhost/memory_game/';
 
     /**
-     * 
+     * On récupère les dix meilleurs scores
+     * @returns {array}
      */
     getScores()
     {
-        // return await fetch(this.getScoresEndpoint)
-        // .then((response) => {
-        //     return (response.json());
-        // })
-        // .then((scores) => {
-        //     console.log(scores);
-        // })
         let scoreArray = [];
 
         return fetch(this.getScoresEndpoint)
             .then(res => { return res.json() })
             .then(scores => {
                 for (let i in scores) {
-                    // console.log(scores[i].elapsed_time);
                     scoreArray.push(scores[i].elapsed_time);
                 }
                 return scoreArray;
             })
-
     }
 
+    /**
+     * On envoi le score vers l'API pour qu'il soit sauvegardé
+     * @param {number} score le score du joueur
+     * @returns 
+     */
     sendScore(score)
     {
         let formData  = new FormData();

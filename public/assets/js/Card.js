@@ -13,6 +13,7 @@ class Card {
      * Créé l'élément correspondant à la carte en vu de l'ajouter au jeu
      */
     getElement() {
+        // On créé un élément correspondant à la carte
         this.element = document.createElement('div');
         this.element.classList.add('card');
         this.element.classList.add('card--' + this.value);
@@ -20,6 +21,7 @@ class Card {
         // On ajoute un event listener sur la carte
         this.element.addEventListener('click', event => {this.handleClick(event)});
       
+        // On la retourne
         return this.element;
     }
 
@@ -31,7 +33,7 @@ class Card {
     }
 
     /**
-     * Gère l'event de clock sur la carte
+     * Clique sur une carte
      */
     handleClick() {
         // On veut pouvoir retourner la carte au click (lui ajouter une class)
@@ -39,6 +41,9 @@ class Card {
         this.game.handleCardClick(this);
     }
 
+    /**
+     * On cache une carte
+     */
     hide() {
         setTimeout(() => {
             this.element.classList.remove('card--revealed');

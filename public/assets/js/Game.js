@@ -1,8 +1,7 @@
 class Game
 {
-    // Config (On peut passer la valeur de cette propriété via le construct)
     pairNumber = null;
-    // Props de départ
+
     containerElement = null;
     matrix = [];
     cards = [];
@@ -10,8 +9,8 @@ class Game
     revealedCards = [];
     foundPair = [];
     clickCounter = 0;
-    won = false;
 
+    won = false;
     countdown = null;
     scoreRepo = null;
 
@@ -33,7 +32,9 @@ class Game
             this.cards.push(new Card(this, value));
         });
 
+        // On instancie notre compte à rebours
         this.countdown = new Countdown(this, this.containerElement);
+        // On instancie notre score repository (liaison avec l'API)
         this.scoreRepo = new ScoreRepository();
     }
 
@@ -63,14 +64,20 @@ class Game
         this.countdown.render();
     }
 
+    /**
+     * Conséquences du clique sur une carte
+     * @param {Card} card La carte sur laquelle le joueur clique
+     */
     handleCardClick(card) {
-        // On contabilise les cartes retourné en les stockant dans un tableau
+        // On comptabilise les cartes retourné en les stockant dans un tableau
         this.revealedCards.push(card);
+
         // On incrémente le compteur de click
         this.clickCounter++;
 
-        // Si deux cartes sont retournées
+        // Si deux cartes sont retournées 
         if (this.revealedCards.length === 2) {
+            // on vérifie si ce sont les mêmes
             this.checkSelection();
         }
     }
@@ -90,47 +97,58 @@ class Game
     }
 
     /**
-     * Si les cartes ont la même value
+     * Les deux cartes retournées ont la même value
      */
     rightSelection() {
         // On récupère la valeur de la pair
         let pairValue = this.revealedCards[0].getValue();
         // Si la pair n'est pas déjà trouvé
         if (!this.foundPair.includes(pairValue)) {
-            // On transmet la value des bonnes cartes retournée a une prop foundPair
+            // On transmet la value des bonnes cartes retournée à la prop foundPair
             this.foundPair.push(pairValue);
         }
         // On vide la tableau revealedCards
         this.revealedCards = [];
         //On vérifie si la partie est gagné.
-        this.isWin();
-    }
-
-    isWin() {
-        if (this.foundPair.length === this.pairNumber) {
+        if (this.isWin()) {
             this.win();
         }
     }
 
+    /**
+     * C'est gagné ?
+     * returns {boolean}
+     */
+    isWin() {
+        return this.foundPair.length === this.pairNumber;
+    }
+
+    /**
+     * La partie est perdue
+     */
     over() {
         this.countdown.stop();
         alert('C\'est perdu !');
     }
 
+    /**
+     * La partie est gagnée
+     */
     win() {
         this.won = true;
-        let timeleft = this.countdown.getCurrentTime();
-        let winTime = this.countdown.startValue - timeleft;
+        let currentTime = this.countdown.getCurrentTime();
+        let winTime = this.countdown.startValue - currentTime;
         this.countdown.stop();
 
-        alert('C\'est gagné en ' + winTime + ' secondes !');
+        // On affiche le message de victoire
+        alert('C\'est gagné en ' + winTime + ' secondes et ' + this.clickCounter + ' clicks');
 
         // On Enregistrer le score
         this.scoreRepo.sendScore(winTime);
     }
 
     /**
-     * Si les cartes ont une value différente
+     * Les deux cartes retournées ont une value différente
      */
     wrongSelection() {
         // On enlève la class card--releaved aux deux cartes
@@ -148,8 +166,8 @@ class Game
 
     /**
      * Permet de mélanger les cartes
-     * @param {*} array 
-     * @returns 
+     * @param {array} array tableau qu'on souhaite mélangé
+     * @returns {array} le tableau mélangé
      */
     shuffle(array) {
         let length = array.length;

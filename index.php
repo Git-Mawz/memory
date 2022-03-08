@@ -1,5 +1,5 @@
 <?php
-
+// On charge l'autoload de composer
 require __DIR__ . '/vendor/autoload.php';
 
 use App\Utils\Database;
@@ -12,7 +12,8 @@ error_reporting(E_ALL);
 
 // On récupère les valeurs relatives à la base de données dans le fichier de config
 require_once 'config.php';
-// On se sert des valeurs récupérés pour instancier notre objet Database une seule fois
+
+// On se sert des valeurs récupérées pour instancier notre objet Database une seule fois
 $database = new Database('mysql:dbname=' . $dbName . ';host=127.0.0.1', $dbUser, $dbPassword);
 
 // On instancie notre controller et on lui transmet l'objet database
