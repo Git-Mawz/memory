@@ -9,60 +9,50 @@
     border-radius: 5px;
 }
 
-.card--revealed.card--0 {
+.card--revealed {
     background: url('../images/cards.png');
+}
+
+.card--0 {
     background-position: 0px 0px;
 }
-.card--revealed.card--1 {
-    background: url('../images/cards.png');
+.card--1 {
     background-position: 0px -100px;
 }
-.card--revealed.card--2 {
-    background: url('../images/cards.png');
+.card--2 {
     background-position: 0px -200px;
 }
-.card--revealed.card--3 {
-    background: url('../images/cards.png');
+.card--3 {
     background-position: 0px -300px;
 }
-.card--revealed.card--4 {
-    background: url('../images/cards.png');
+.card--4 {
     background-position: 0px -400px;
 }
-.card--revealed.card--5 {
-    background: url('../images/cards.png');
+.card--5 {
     background-position: 0px -500px;
 }
-.card--revealed.card--6 {
-    background: url('../images/cards.png');
+.card--6 {
     background-position: 0px -600px;
 }
-.card--revealed.card--7 {
-    background: url('../images/cards.png');
+.card--7 {
     background-position: 0px -700px;
 }
-.card--revealed.card--8 {
-    background: url('../images/cards.png');
+.card--8 {
     background-position: 0px -800px;
 }
-.card--revealed.card--9 {
-    background: url('../images/cards.png');
+.card--9 {
     background-position: 0px -900px;
 }
-.card--revealed.card--10 {
-    background: url('../images/cards.png');
+.card--10 {
     background-position: 0px -1000px;
 }
-.card--revealed.card--11 {
-    background: url('../images/cards.png');
+.card--11 {
     background-position: 0px -1100px;
 }
-.card--revealed.card--12 {
-    background: url('../images/cards.png');
+.card--12 {
     background-position: 0px -1200px;
 }
-.card--revealed.card--13 {
-    background: url('../images/cards.png');
+.card--13 {
     background-position: 0px -1300px;
 }
 
