@@ -69,6 +69,12 @@ class Game
      * @param {Card} card La carte sur laquelle le joueur clique
      */
     handleCardClick(card) {
+        // On ajoute un status temporaire dufférent de celui lié au style de la carte
+        card.addCheckedStatus();
+
+        // On regarde si plus de 2 cartes ont ce status
+        this.checkRush();
+
         // On comptabilise les cartes retourné en les stockant dans un tableau
         this.revealedCards.push(card);
 
@@ -80,6 +86,26 @@ class Game
             // on vérifie si ce sont les mêmes
             this.checkSelection();
         }
+    }
+
+    /**
+     * On vérifie que l'utilisateur n'est pas en train de tricher en allant trop vite
+     */
+    checkRush()
+    {
+        tempCheckedCards = [];
+        this.cards.forEach(card => {
+            if (card.element.dataset.checked == 1) {
+                tempCheckedCards.push(card);
+            }
+        });
+
+        if(tempCheckedCards.length > 2) {
+            tempCheckedCards.forEach(card => {
+                card.forceHide();
+            });
+        }
+
     }
 
     /**
@@ -109,6 +135,7 @@ class Game
         }
         // On vide la tableau revealedCards
         this.revealedCards = [];
+
         //On vérifie si la partie est gagné.
         if (this.isWin()) {
             this.win();

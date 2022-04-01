@@ -47,7 +47,25 @@ class Card {
     hide() {
         setTimeout(() => {
             this.element.classList.remove('card--revealed');
+            this.removeCheckedStatus();
         }, 1000);
+    }
+
+    forceHide()
+    {
+        console.log('rush détecté');
+        this.element.classList.remove('card--revealed');
+        this.removeCheckedStatus();
+    }
+
+    addCheckedStatus()
+    {
+        this.element.dataset.checked = 1;
+    }
+
+    removeCheckedStatus()
+    {
+        delete this.element.dataset.checked;
     }
 
 }
